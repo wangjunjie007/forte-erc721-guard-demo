@@ -91,6 +91,10 @@ Use this when time-based unlock and sanctions screening are the real constraints
 
 Use this when you need a policy-level incident posture that freezes all non-treasury movement quickly.
 
+### Marketplace operator gate NFT guard
+
+Use this when NFT movement must be constrained to direct owners and explicitly approved operator channels (for example, approved marketplace adapters) while still preserving blacklist and emergency pause posture.
+
 ---
 
 ## How to extend the cookbook

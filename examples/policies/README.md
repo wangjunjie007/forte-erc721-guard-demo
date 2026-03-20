@@ -16,6 +16,9 @@ These example policy files turn the ERC721 repo into a small **NFT policy cookbo
 - `emergency-freeze-nft.policy.json`  
   Incident-response posture that allows only treasury-originated transfers.
 
+- `marketplace-operator-gate-nft.policy.json`  
+  Marketplace-oriented posture that allows only direct owners, treasury bypasses, or operators approved in an operator registry.
+
 ## How to try one
 
 1. Copy a template over `policy/nft-transfer-guard.policy.json`

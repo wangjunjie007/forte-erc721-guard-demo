@@ -111,6 +111,7 @@ forte-erc721-guard-demo/
 │     ├─ baseline-nft-transfer-guard.policy.json
 │     ├─ emergency-freeze-nft.policy.json
 │     ├─ lockup-and-sanctions-only-nft.policy.json
+│     ├─ marketplace-operator-gate-nft.policy.json
 │     └─ strict-no-bypass-nft.policy.json
 └─ playground/
    ├─ app.js
@@ -239,7 +240,7 @@ This repo now also includes a marketplace-oriented extension path:
 
 - `src/ForteMarketplaceGuardedNFT.sol`
 - `src/OperatorRegistry.sol`
-- `examples/marketplace-operator-gate.policy.json`
+- `examples/policies/marketplace-operator-gate-nft.policy.json`
 - `docs/MARKETPLACE_EXAMPLE.md`
 
 This example demonstrates how to restrict NFT movement to direct owner transfers, treasury bypasses, or explicitly approved operators.

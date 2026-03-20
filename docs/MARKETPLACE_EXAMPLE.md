@@ -25,5 +25,5 @@ This example shows how to move that logic into a policy-driven control surface.
 ## Validation path
 
 - unit tests in `test/ForteMarketplaceGuardedNFT.t.sol`
-- policy file in `examples/marketplace-operator-gate.policy.json`
+- policy file in `examples/policies/marketplace-operator-gate-nft.policy.json`
 - README keeps the base ERC721 repo focused, while this document explains the marketplace-oriented extension path
