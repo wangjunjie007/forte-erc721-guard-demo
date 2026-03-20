@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for improving this ERC721 companion demo.
+Thanks for contributing to the ERC721 companion demo.
 
 ## Local setup
 
@@ -17,15 +17,15 @@ npm run check:integration
 npm run check:policy
 ```
 
-## Good contribution scope
+## Good contributions
 
-- clearer NFT-specific policy examples
-- stronger transfer safety/lockup test coverage
-- reproducibility improvements for local stack rebuild
-- concise docs for ERC721 integration posture
+- clearer NFT policy-driven examples
+- stronger test coverage for transfer restrictions
+- better local reproducibility
+- more precise docs and demo material
+- companion examples for marketplace or mint restrictions
 
-## Style
+## Scope guidance
 
-- keep transfer logic readable
-- avoid unnecessary abstraction for demo code
-- preserve deterministic local validation
+Keep this repo focused on demonstrating policy-driven NFT transfer controls with Forte.
+Avoid unrelated product complexity that weakens the teaching value.

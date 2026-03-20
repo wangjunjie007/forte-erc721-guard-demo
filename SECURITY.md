@@ -1,15 +1,9 @@
 # Security Policy
 
-## Reporting a vulnerability
+If you discover a security issue in this demo, please avoid filing a public issue with exploit details.
 
-Please do not open a public issue for sensitive findings.
+Use GitHub Security Advisories or contact the repository owner privately first.
 
-Use GitHub Security Advisory reporting for this repository:
+## Scope
 
-- https://github.com/wangjunjie007/forte-erc721-guard-demo/security/policy
-
-Include:
-- affected component(s)
-- reproduction steps
-- impact assessment
-- suggested mitigation (if known)
+This repository is a public demo. It is not production infrastructure, but security-sensitive findings are still worth reporting responsibly.
