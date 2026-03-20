@@ -1,0 +1,23 @@
+{
+  "network": {
+    "name": "anvil",
+    "chainId": 31337,
+    "rpc": "http://127.0.0.1:8545"
+  },
+  "rulesEngine": {
+    "diamondAddress": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318"
+  },
+  "demoContracts": {
+    "blacklistOracle": "0xb7f8bc63bbcad18155201308c8f3540b07f84f5e",
+    "nft": "0xa51c1fc2f0d1a1b8494ed1fe312d7c3a78ed91c0"
+  },
+  "policy": {
+    "appliedPolicyId": 1,
+    "policyType": "open"
+  },
+  "validation": {
+    "blacklistRule": "pass",
+    "lockupRule": "pass",
+    "pauseRule": "pass"
+  }
+}

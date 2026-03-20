@@ -1,0 +1,99 @@
+{
+  "Policy": "Guarded ERC721 Transfer Policy",
+  "Description": "Applies blacklist, lockup, and emergency transfer freeze checks for ERC721 transfers.",
+  "PolicyType": "open",
+  "CallingFunctions": [
+    {
+      "Name": "transferFrom",
+      "FunctionSignature": "transferFrom(address from, address to, uint256 tokenId)",
+      "EncodedValues": "address operator, address from, address to, uint256 tokenId, uint256 blockTime, uint256 tokenUnlockTime, uint256 fromBlacklistFlag, uint256 toBlacklistFlag, uint256 treasuryBypass, uint256 transfersPausedFlag"
+    },
+    {
+      "Name": "safeTransferFrom",
+      "FunctionSignature": "safeTransferFrom(address from, address to, uint256 tokenId)",
+      "EncodedValues": "address operator, address from, address to, uint256 tokenId, uint256 blockTime, uint256 tokenUnlockTime, uint256 fromBlacklistFlag, uint256 toBlacklistFlag, uint256 treasuryBypass, uint256 transfersPausedFlag"
+    },
+    {
+      "Name": "safeTransferFromWithData",
+      "FunctionSignature": "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)",
+      "EncodedValues": "address operator, address from, address to, uint256 tokenId, uint256 blockTime, uint256 tokenUnlockTime, uint256 fromBlacklistFlag, uint256 toBlacklistFlag, uint256 treasuryBypass, uint256 transfersPausedFlag"
+    }
+  ],
+  "ForeignCalls": [],
+  "Trackers": [],
+  "MappedTrackers": [],
+  "Rules": [
+    {
+      "Name": "Transfer Blacklist Check",
+      "Description": "Block NFT transfers that involve blacklisted addresses.",
+      "Condition": "fromBlacklistFlag == 0 AND toBlacklistFlag == 0",
+      "PositiveEffects": ["emit \"BlacklistCheckPassed\""],
+      "NegativeEffects": ["revert(\"Blacklisted address\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "Transfer Lockup Check",
+      "Description": "Prevent NFT transfers before the token unlock time unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR blockTime >= tokenUnlockTime",
+      "PositiveEffects": ["emit \"LockupCheckPassed\""],
+      "NegativeEffects": ["revert(\"Token still locked\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "Transfer Emergency Freeze Check",
+      "Description": "Allow outgoing transfers only when transfers are not paused, unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR transfersPausedFlag == 0",
+      "PositiveEffects": ["emit \"TransfersNotPaused\""],
+      "NegativeEffects": ["revert(\"Transfers paused\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "SafeTransfer Blacklist Check",
+      "Description": "Block safe transfers that involve blacklisted addresses.",
+      "Condition": "fromBlacklistFlag == 0 AND toBlacklistFlag == 0",
+      "PositiveEffects": ["emit \"BlacklistCheckPassed\""],
+      "NegativeEffects": ["revert(\"Blacklisted address\")"],
+      "CallingFunction": "safeTransferFrom"
+    },
+    {
+      "Name": "SafeTransfer Lockup Check",
+      "Description": "Prevent safe transfers before unlock time unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR blockTime >= tokenUnlockTime",
+      "PositiveEffects": ["emit \"LockupCheckPassed\""],
+      "NegativeEffects": ["revert(\"Token still locked\")"],
+      "CallingFunction": "safeTransferFrom"
+    },
+    {
+      "Name": "SafeTransfer Emergency Freeze Check",
+      "Description": "Allow safe transfers only when transfers are not paused, unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR transfersPausedFlag == 0",
+      "PositiveEffects": ["emit \"TransfersNotPaused\""],
+      "NegativeEffects": ["revert(\"Transfers paused\")"],
+      "CallingFunction": "safeTransferFrom"
+    },
+    {
+      "Name": "SafeTransferWithData Blacklist Check",
+      "Description": "Block safe transfers with data that involve blacklisted addresses.",
+      "Condition": "fromBlacklistFlag == 0 AND toBlacklistFlag == 0",
+      "PositiveEffects": ["emit \"BlacklistCheckPassed\""],
+      "NegativeEffects": ["revert(\"Blacklisted address\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    },
+    {
+      "Name": "SafeTransferWithData Lockup Check",
+      "Description": "Prevent safe transfers with data before unlock time unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR blockTime >= tokenUnlockTime",
+      "PositiveEffects": ["emit \"LockupCheckPassed\""],
+      "NegativeEffects": ["revert(\"Token still locked\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    },
+    {
+      "Name": "SafeTransferWithData Emergency Freeze Check",
+      "Description": "Allow safe transfers with data only when transfers are not paused, unless treasury bypass is active.",
+      "Condition": "treasuryBypass == 1 OR transfersPausedFlag == 0",
+      "PositiveEffects": ["emit \"TransfersNotPaused\""],
+      "NegativeEffects": ["revert(\"Transfers paused\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "forte-erc721-guard-demo",
+  "version": "1.0.0",
+  "description": "A practical ERC721 demo showing how to enforce blacklist checks, lockups, and emergency transfer freezes with Forte Rules Engine",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangjunjie007/forte-erc721-guard-demo.git"
+  },
+  "homepage": "https://github.com/wangjunjie007/forte-erc721-guard-demo#readme",
+  "bugs": {
+    "url": "https://github.com/wangjunjie007/forte-erc721-guard-demo/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "forge test -vv",
+    "rebuild:local": "bash scripts/rebuild-local-stack.sh",
+    "check:live": "bash scripts/live-check.sh",
+    "check:integration": "bash scripts/integration-check.sh",
+    "check:policy": "bash scripts/assert-policy-state.sh"
+  },
+  "keywords": [
+    "forte",
+    "rules-engine",
+    "erc721",
+    "nft",
+    "solidity",
+    "foundry",
+    "compliance",
+    "token-guard",
+    "policy-engine"
+  ],
+  "dependencies": {
+    "@fortefoundation/forte-rules-engine": "^0.9.2",
+    "@openzeppelin/contracts": "^5.4.0"
+  },
+  "devDependencies": {
+    "@fortefoundation/forte-rules-engine-sdk": "^0.20.5",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
