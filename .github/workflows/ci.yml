@@ -58,6 +58,9 @@ jobs:
       - name: Install forge-std
         run: forge install foundry-rs/forge-std --no-git
 
+      - name: Validate policy examples
+        run: npm run check:examples
+
       - name: Run Foundry tests
         run: npm test
 

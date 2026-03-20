@@ -64,8 +64,10 @@ A designated treasury address can bypass lockup and pause restrictions.
 ```text
 forte-erc721-guard-demo/
 ├─ .env.sample
+├─ CONTRIBUTING.md
 ├─ LICENSE
 ├─ README.md
+├─ SECURITY.md
 ├─ foundry.toml
 ├─ package.json
 ├─ policy/
@@ -77,7 +79,8 @@ forte-erc721-guard-demo/
 │  ├─ assert-policy-state.sh
 │  ├─ integration-check.sh
 │  ├─ live-check.sh
-│  └─ rebuild-local-stack.sh
+│  ├─ rebuild-local-stack.sh
+│  └─ validate-policy-examples.ts
 ├─ src/
 │  ├─ BlacklistOracle.sol
 │  ├─ ForteGuardedNFT.sol
@@ -88,9 +91,16 @@ forte-erc721-guard-demo/
 ├─ docs/
 │  ├─ ARCHITECTURE.md
 │  ├─ DEMO.md
+│  ├─ POLICY_COOKBOOK.md
 │  └─ PUBLISHING.md
 └─ examples/
-   └─ deployment-summary.example.json
+   ├─ deployment-summary.example.json
+   └─ policies/
+      ├─ README.md
+      ├─ baseline-nft-transfer-guard.policy.json
+      ├─ emergency-freeze-nft.policy.json
+      ├─ lockup-and-sanctions-only-nft.policy.json
+      └─ strict-no-bypass-nft.policy.json
 ```
 
 ---
@@ -132,6 +142,14 @@ This will:
 
 ## Verification commands
 
+### Policy example validation
+
+```bash
+npm run check:examples
+```
+
+This validates the active NFT policy file plus every cookbook template in `examples/policies/`.
+
 ### Unit tests
 
 ```bash
@@ -155,6 +173,18 @@ npm run check:policy
 ```bash
 npm run check:live
 ```
+
+---
+
+## NFT policy cookbook
+
+Developers rarely want a single NFT policy file. They want a set of starting postures they can fork quickly.
+
+This repo now includes:
+
+- `docs/POLICY_COOKBOOK.md` for posture selection and adaptation guidance
+- `examples/policies/` for ready-to-copy NFT policy templates
+- `npm run check:examples` to keep the cookbook valid in CI
 
 ---
 

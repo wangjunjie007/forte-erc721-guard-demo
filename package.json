@@ -1,6 +1,6 @@
 {
   "name": "forte-erc721-guard-demo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A practical ERC721 demo showing how to enforce blacklist checks, lockups, and emergency transfer freezes with Forte Rules Engine",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,8 @@
     "rebuild:local": "bash scripts/rebuild-local-stack.sh",
     "check:live": "bash scripts/live-check.sh",
     "check:integration": "bash scripts/integration-check.sh",
-    "check:policy": "bash scripts/assert-policy-state.sh"
+    "check:policy": "bash scripts/assert-policy-state.sh",
+    "check:examples": "tsx scripts/validate-policy-examples.ts"
   },
   "keywords": [
     "forte",

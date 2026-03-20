@@ -12,6 +12,7 @@ forge install foundry-rs/forge-std --no-git
 ## Validation before opening a PR
 
 ```bash
+npm run check:examples
 npm test
 npm run check:integration
 npm run check:policy
@@ -24,6 +25,15 @@ npm run check:policy
 - better local reproducibility
 - more precise docs and demo material
 - companion examples for marketplace or mint restrictions
+- cookbook-style templates under `examples/policies/`
+- validation improvements for `npm run check:examples`
+
+## Adding a new NFT policy template
+
+1. Add the JSON file to `examples/policies/`
+2. Keep it compatible with the encoded values actually forwarded by the current NFT integration
+3. Document the posture in `docs/POLICY_COOKBOOK.md` or `examples/policies/README.md`
+4. Run `npm run check:examples` before opening the PR
 
 ## Scope guidance
 
