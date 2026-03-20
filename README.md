@@ -75,10 +75,12 @@ forte-erc721-guard-demo/
 ├─ script/
 │  └─ DeployDemo.s.sol
 ├─ scripts/
+│  ├─ apply-policy-template.ts
 │  ├─ apply-policy.ts
 │  ├─ assert-policy-state.sh
 │  ├─ integration-check.sh
 │  ├─ live-check.sh
+│  ├─ policy-helper.ts
 │  ├─ rebuild-local-stack.sh
 │  └─ validate-policy-examples.ts
 ├─ src/
@@ -92,7 +94,8 @@ forte-erc721-guard-demo/
 │  ├─ ARCHITECTURE.md
 │  ├─ DEMO.md
 │  ├─ POLICY_COOKBOOK.md
-│  └─ PUBLISHING.md
+│  ├─ PUBLISHING.md
+│  └─ TYPESCRIPT_HELPER.md
 └─ examples/
    ├─ deployment-summary.example.json
    └─ policies/
@@ -185,6 +188,18 @@ This repo now includes:
 - `docs/POLICY_COOKBOOK.md` for posture selection and adaptation guidance
 - `examples/policies/` for ready-to-copy NFT policy templates
 - `npm run check:examples` to keep the cookbook valid in CI
+
+---
+
+## TypeScript / viem helper wrapper
+
+To expand participation beyond Solidity-only contributors, this repo now includes a TypeScript helper layer:
+
+- `npm run policy:templates` to list available NFT cookbook templates
+- `npm run policy:apply-template -- --template <name>` to create+apply a template
+- `npm run policy:apply-template -- --template <name> --create-only` to create without apply
+
+See `docs/TYPESCRIPT_HELPER.md` for full usage.
 
 ---
 
