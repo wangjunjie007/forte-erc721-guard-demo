@@ -82,6 +82,7 @@ forte-erc721-guard-demo/
 │  ├─ live-check.sh
 │  ├─ policy-helper.ts
 │  ├─ rebuild-local-stack.sh
+│  ├─ run-policy-playground.sh
 │  └─ validate-policy-examples.ts
 ├─ src/
 │  ├─ BlacklistOracle.sol
@@ -94,16 +95,21 @@ forte-erc721-guard-demo/
 │  ├─ ARCHITECTURE.md
 │  ├─ DEMO.md
 │  ├─ POLICY_COOKBOOK.md
+│  ├─ POLICY_PLAYGROUND.md
 │  ├─ PUBLISHING.md
 │  └─ TYPESCRIPT_HELPER.md
-└─ examples/
-   ├─ deployment-summary.example.json
-   └─ policies/
-      ├─ README.md
-      ├─ baseline-nft-transfer-guard.policy.json
-      ├─ emergency-freeze-nft.policy.json
-      ├─ lockup-and-sanctions-only-nft.policy.json
-      └─ strict-no-bypass-nft.policy.json
+├─ examples/
+│  ├─ deployment-summary.example.json
+│  └─ policies/
+│     ├─ README.md
+│     ├─ baseline-nft-transfer-guard.policy.json
+│     ├─ emergency-freeze-nft.policy.json
+│     ├─ lockup-and-sanctions-only-nft.policy.json
+│     └─ strict-no-bypass-nft.policy.json
+└─ playground/
+   ├─ app.js
+   ├─ index.html
+   └─ styles.css
 ```
 
 ---
@@ -200,6 +206,24 @@ To expand participation beyond Solidity-only contributors, this repo now include
 - `npm run policy:apply-template -- --template <name> --create-only` to create without apply
 
 See `docs/TYPESCRIPT_HELPER.md` for full usage.
+
+---
+
+## Local NFT policy playground
+
+For fast posture simulation, run:
+
+```bash
+npm run playground:start
+```
+
+Then open:
+
+- `http://127.0.0.1:4174/playground/`
+
+This playground evaluates NFT policy rules from cookbook JSON in-browser and shows a rule-by-rule PASS/FAIL view with final allow/revert outcome.
+
+See `docs/POLICY_PLAYGROUND.md` for usage details.
 
 ---
 

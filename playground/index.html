@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forte NFT Policy Playground</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Forte NFT Policy Playground</h1>
+        <p>Compare ERC721 cookbook postures locally and simulate transfer outcomes.</p>
+      </header>
+
+      <section class="card">
+        <h2>1) Select NFT policy posture</h2>
+        <select id="templateSelect"></select>
+        <p id="policyDescription" class="muted"></p>
+      </section>
+
+      <section class="card grid">
+        <div>
+          <h2>2) Transfer context</h2>
+          <label>
+            Calling Function
+            <select id="callingFunction">
+              <option value="transferFrom">transferFrom</option>
+              <option value="safeTransferFrom">safeTransferFrom</option>
+              <option value="safeTransferFromWithData">safeTransferFromWithData</option>
+            </select>
+          </label>
+          <label>
+            Token ID
+            <input id="tokenId" type="number" value="1" min="0" step="1" />
+          </label>
+          <label>
+            Block Time
+            <input id="blockTime" type="number" value="1700000000" min="0" step="1" />
+          </label>
+          <label>
+            Token Unlock Time
+            <input id="tokenUnlockTime" type="number" value="0" min="0" step="1" />
+          </label>
+        </div>
+
+        <div>
+          <h2>3) Flags</h2>
+          <label class="checkbox">
+            <input id="fromBlacklistFlag" type="checkbox" />
+            Sender is blacklisted
+          </label>
+          <label class="checkbox">
+            <input id="toBlacklistFlag" type="checkbox" />
+            Recipient is blacklisted
+          </label>
+          <label class="checkbox">
+            <input id="treasuryBypass" type="checkbox" />
+            Sender is treasury (bypass)
+          </label>
+          <label class="checkbox">
+            <input id="transfersPausedFlag" type="checkbox" />
+            Transfers paused
+          </label>
+
+          <button id="simulateBtn" type="button">Simulate</button>
+          <div id="outcome" class="outcome muted">Run simulation to see result.</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4) Rule-by-rule result</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Rule</th>
+              <th>Condition</th>
+              <th>Result</th>
+              <th>Effect</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
