@@ -1,6 +1,6 @@
 {
   "name": "forte-erc721-guard-demo",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A practical ERC721 demo showing how to enforce blacklist checks, lockups, and emergency transfer freezes with Forte Rules Engine",
   "license": "MIT",
   "repository": {

@@ -87,13 +87,19 @@ forte-erc721-guard-demo/
 ├─ src/
 │  ├─ BlacklistOracle.sol
 │  ├─ ForteGuardedNFT.sol
-│  └─ RulesEngineClientCustom.sol
+│  ├─ ForteMarketplaceGuardedNFT.sol
+│  ├─ OperatorRegistry.sol
+│  ├─ RulesEngineClientCustom.sol
+│  └─ RulesEngineClientMarketplace.sol
 ├─ test/
 │  ├─ ForteGuardedNFT.t.sol
+│  ├─ ForteMarketplaceGuardedNFT.t.sol
+│  ├─ MockMarketplaceRulesEngine.sol
 │  └─ MockRulesEngine.sol
 ├─ docs/
 │  ├─ ARCHITECTURE.md
 │  ├─ DEMO.md
+│  ├─ MARKETPLACE_EXAMPLE.md
 │  ├─ POLICY_COOKBOOK.md
 │  ├─ POLICY_PLAYGROUND.md
 │  ├─ PUBLISHING.md
@@ -224,6 +230,19 @@ Then open:
 This playground evaluates NFT policy rules from cookbook JSON in-browser and shows a rule-by-rule PASS/FAIL view with final allow/revert outcome.
 
 See `docs/POLICY_PLAYGROUND.md` for usage details.
+
+---
+
+## Marketplace restriction companion example
+
+This repo now also includes a marketplace-oriented extension path:
+
+- `src/ForteMarketplaceGuardedNFT.sol`
+- `src/OperatorRegistry.sol`
+- `examples/marketplace-operator-gate.policy.json`
+- `docs/MARKETPLACE_EXAMPLE.md`
+
+This example demonstrates how to restrict NFT movement to direct owner transfers, treasury bypasses, or explicitly approved operators.
 
 ---
 

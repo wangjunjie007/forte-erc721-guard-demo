@@ -1,0 +1,70 @@
+{
+  "Policy": "Marketplace Operator Gate NFT Policy",
+  "Description": "Restrict ERC721 transfers to direct owners or operators explicitly allowed in an operator registry, while preserving blacklist checks and an emergency pause control.",
+  "PolicyType": "open",
+  "CallingFunctions": [
+    {
+      "Name": "transferFrom",
+      "FunctionSignature": "transferFrom(address from, address to, uint256 tokenId)",
+      "EncodedValues": "address operator, address from, address to, uint256 tokenId, uint256 operatorAllowedFlag, uint256 fromBlacklistFlag, uint256 toBlacklistFlag, uint256 treasuryBypass, uint256 transfersPausedFlag"
+    },
+    {
+      "Name": "safeTransferFromWithData",
+      "FunctionSignature": "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)",
+      "EncodedValues": "address operator, address from, address to, uint256 tokenId, uint256 operatorAllowedFlag, uint256 fromBlacklistFlag, uint256 toBlacklistFlag, uint256 treasuryBypass, uint256 transfersPausedFlag"
+    }
+  ],
+  "ForeignCalls": [],
+  "Trackers": [],
+  "MappedTrackers": [],
+  "Rules": [
+    {
+      "Name": "Transfer Blacklist Check",
+      "Description": "Block transfers involving blacklisted addresses.",
+      "Condition": "fromBlacklistFlag == 0 AND toBlacklistFlag == 0",
+      "PositiveEffects": ["emit \"BlacklistCheckPassed\""],
+      "NegativeEffects": ["revert(\"Blacklisted address\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "Transfer Operator Gate Check",
+      "Description": "Allow only direct owner transfers, treasury bypasses, or operators explicitly approved in the registry.",
+      "Condition": "treasuryBypass == 1 OR operatorAllowedFlag == 1",
+      "PositiveEffects": ["emit \"OperatorGatePassed\""],
+      "NegativeEffects": ["revert(\"Operator not allowed\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "Transfer Emergency Freeze Check",
+      "Description": "Block non-treasury transfers while emergency pause is active.",
+      "Condition": "treasuryBypass == 1 OR transfersPausedFlag == 0",
+      "PositiveEffects": ["emit \"TransfersNotPaused\""],
+      "NegativeEffects": ["revert(\"Transfers paused\")"],
+      "CallingFunction": "transferFrom"
+    },
+    {
+      "Name": "SafeTransfer Blacklist Check",
+      "Description": "Block safe transfers with data involving blacklisted addresses.",
+      "Condition": "fromBlacklistFlag == 0 AND toBlacklistFlag == 0",
+      "PositiveEffects": ["emit \"BlacklistCheckPassed\""],
+      "NegativeEffects": ["revert(\"Blacklisted address\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    },
+    {
+      "Name": "SafeTransfer Operator Gate Check",
+      "Description": "Allow only direct owner transfers, treasury bypasses, or approved operators in safe transfer flows.",
+      "Condition": "treasuryBypass == 1 OR operatorAllowedFlag == 1",
+      "PositiveEffects": ["emit \"OperatorGatePassed\""],
+      "NegativeEffects": ["revert(\"Operator not allowed\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    },
+    {
+      "Name": "SafeTransfer Emergency Freeze Check",
+      "Description": "Block non-treasury safe transfers while emergency pause is active.",
+      "Condition": "treasuryBypass == 1 OR transfersPausedFlag == 0",
+      "PositiveEffects": ["emit \"TransfersNotPaused\""],
+      "NegativeEffects": ["revert(\"Transfers paused\")"],
+      "CallingFunction": "safeTransferFromWithData"
+    }
+  ]
+}
