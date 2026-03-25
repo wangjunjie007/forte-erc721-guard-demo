@@ -67,6 +67,7 @@ A designated treasury address can bypass lockup and pause restrictions.
 ```text
 forte-erc721-guard-demo/
 ├─ .env.sample
+├─ .env.testnet.marketplace.sample
 ├─ CONTRIBUTING.md
 ├─ LICENSE
 ├─ README.md
@@ -86,6 +87,8 @@ forte-erc721-guard-demo/
 │  ├─ live-check.sh
 │  ├─ marketplace-integration-check.sh
 │  ├─ policy-helper.ts
+│  ├─ testnet-marketplace-deploy.sh
+│  ├─ testnet-marketplace-verify.sh
 │  ├─ rebuild-local-stack.sh
 │  ├─ run-policy-playground.sh
 │  └─ validate-policy-examples.ts
@@ -204,6 +207,27 @@ This flow:
 4. creates and applies `examples/policies/marketplace-operator-gate-nft.policy.json`
 5. proves operator allowlist / blacklist / pause / treasury bypass behavior live
 6. writes `cache/marketplace-integration-summary.json`
+
+### Deploy the marketplace companion path to testnet
+
+1. copy `.env.testnet.marketplace.sample` to `.env.testnet.marketplace`
+2. fill in `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, and `RULES_ENGINE_ADDRESS`
+3. run:
+
+```bash
+npm run deploy:testnet-marketplace
+```
+
+This writes:
+- `cache/testnet-marketplace-deployment-summary.json`
+- `cache/testnet-marketplace.env`
+- `cache/testnet-marketplace-verify-summary.json`
+
+To re-run non-destructive verification only:
+
+```bash
+npm run verify:testnet-marketplace
+```
 
 ### Run only the live NFT transfer scenario checks
 

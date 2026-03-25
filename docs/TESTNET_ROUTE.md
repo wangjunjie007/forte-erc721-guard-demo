@@ -147,13 +147,29 @@ A good first external demo should include:
 
 ---
 
-## Best next implementation step
+## Current implementation status
 
-The highest-leverage next contribution is:
+The repo now includes:
 
-**Add a dedicated `scripts/testnet-marketplace-deploy.sh` (or TS equivalent) that deploys the marketplace companion contracts, wires Rules Engine, applies the marketplace policy, and writes a machine-readable summary artifact.**
+- `scripts/testnet-marketplace-deploy.sh`
+- `scripts/testnet-marketplace-verify.sh`
+- `.env.testnet.marketplace.sample`
 
-That would turn this repo from a local-only showcase into a reviewer-shareable developer asset.
+Core command flow:
+
+```bash
+cp .env.testnet.marketplace.sample .env.testnet.marketplace
+# fill in TESTNET_RPC_URL / TESTNET_PRIVATE_KEY / RULES_ENGINE_ADDRESS
+npm run deploy:testnet-marketplace
+npm run verify:testnet-marketplace
+```
+
+Artifacts written locally:
+- `cache/testnet-marketplace-deployment-summary.json`
+- `cache/testnet-marketplace.env`
+- `cache/testnet-marketplace-verify-summary.json`
+
+This turns the repo from a local-only showcase into a reviewer-shareable developer asset.
 
 ---
 
