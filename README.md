@@ -106,6 +106,7 @@ forte-erc721-guard-demo/
 │  ├─ DEMO.md
 │  ├─ MARKETPLACE_EXAMPLE.md
 │  ├─ POLICY_COOKBOOK.md
+│  ├─ TESTNET_ROUTE.md
 │  ├─ POLICY_PLAYGROUND.md
 │  ├─ PUBLISHING.md
 │  └─ TYPESCRIPT_HELPER.md
@@ -243,6 +244,7 @@ For the marketplace-oriented ERC721 posture, use:
 - `docs/MARKETPLACE_EXAMPLE.md` for the policy intent and operator-gated design
 - `npm run check:marketplace` for the deterministic local-chain integration path
 - `cache/marketplace-integration-summary.json` for the reproducible output snapshot
+- `docs/TESTNET_ROUTE.md` for the recommended Base Sepolia / Sepolia rollout path
 
 ## Local NFT policy playground
 
