@@ -179,6 +179,15 @@ This writes:
 - `reports/reviewer-pack.json`
 - `reports/reviewer-pack.md`
 
+To create a portable archive that can be uploaded or handed to reviewers:
+
+```bash
+npm run artifacts:release-bundle
+```
+
+This writes:
+- `reports/forte-erc721-review-bundle.tgz`
+
 This turns the repo from a local-only showcase into a reviewer-shareable developer asset.
 
 ---

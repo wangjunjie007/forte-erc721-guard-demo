@@ -86,6 +86,7 @@ forte-erc721-guard-demo/
 │  ├─ live-check-marketplace.sh
 │  ├─ live-check.sh
 │  ├─ marketplace-integration-check.sh
+│  ├─ export-release-bundle.sh
 │  ├─ export-reviewer-pack.sh
 │  ├─ policy-helper.ts
 │  ├─ testnet-marketplace-deploy.sh
@@ -245,6 +246,15 @@ npm run artifacts:reviewer-pack
 This writes:
 - `reports/reviewer-pack.json`
 - `reports/reviewer-pack.md`
+
+To package the latest docs + summaries + reviewer pack into a portable release artifact:
+
+```bash
+npm run artifacts:release-bundle
+```
+
+This writes:
+- `reports/forte-erc721-review-bundle.tgz`
 
 ### Run only the live NFT transfer scenario checks
 

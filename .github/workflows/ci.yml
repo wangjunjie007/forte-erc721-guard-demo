@@ -78,3 +78,16 @@ jobs:
 
       - name: Export reviewer pack
         run: npm run artifacts:reviewer-pack
+
+      - name: Export release bundle
+        run: npm run artifacts:release-bundle
+
+      - name: Upload reviewer and release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: forte-erc721-review-assets
+          path: |
+            reports/reviewer-pack.json
+            reports/reviewer-pack.md
+            reports/forte-erc721-review-bundle.tgz
+          if-no-files-found: error
