@@ -7,7 +7,7 @@
 A practical ERC721 companion demo that shows how to enforce **blacklist checks**, **token lockups**, and an **emergency transfer freeze** on NFTs with **Forte Rules Engine**.
 
 > Status: **public-release ready for local demo use**  
-> Validation: **10/10 Foundry tests passing** + **end-to-end integration flow passing**
+> Validation: **17/17 Foundry tests passing** + **end-to-end integration flow passing** + **marketplace companion integration flow passing**
 
 ---
 
@@ -55,7 +55,10 @@ A designated treasury address can bypass lockup and pause restrictions.
   Policy definition covering `transferFrom` and both `safeTransferFrom` flows.
 
 - `scripts/rebuild-local-stack.sh`  
-  One-command rebuild for local anvil + Rules Engine + NFT demo + policy apply + validation.
+  One-command rebuild for local anvil + Rules Engine + base NFT demo + policy apply + validation.
+
+- `scripts/marketplace-integration-check.sh`  
+  Fresh-chain marketplace companion rebuild that deploys the operator registry path, applies the marketplace gate policy, validates real operator behavior, and writes a reproducible cache summary.
 
 ---
 
@@ -79,7 +82,9 @@ forte-erc721-guard-demo/
 │  ├─ apply-policy.ts
 │  ├─ assert-policy-state.sh
 │  ├─ integration-check.sh
+│  ├─ live-check-marketplace.sh
 │  ├─ live-check.sh
+│  ├─ marketplace-integration-check.sh
 │  ├─ policy-helper.ts
 │  ├─ rebuild-local-stack.sh
 │  ├─ run-policy-playground.sh
@@ -184,6 +189,21 @@ npm run check:integration
 npm run check:policy
 ```
 
+### Run the marketplace companion integration path on a fresh anvil chain
+
+```bash
+npm run check:marketplace
+```
+
+This flow:
+
+1. starts a fresh local anvil chain
+2. deploys the Forte Rules Engine diamond
+3. deploys `BlacklistOracle`, `OperatorRegistry`, and `ForteMarketplaceGuardedNFT`
+4. creates and applies `examples/policies/marketplace-operator-gate-nft.policy.json`
+5. proves operator allowlist / blacklist / pause / treasury bypass behavior live
+6. writes `cache/marketplace-integration-summary.json`
+
 ### Run only the live NFT transfer scenario checks
 
 ```bash
@@ -215,6 +235,14 @@ To expand participation beyond Solidity-only contributors, this repo now include
 See `docs/TYPESCRIPT_HELPER.md` for full usage.
 
 ---
+
+## Marketplace companion runbook
+
+For the marketplace-oriented ERC721 posture, use:
+
+- `docs/MARKETPLACE_EXAMPLE.md` for the policy intent and operator-gated design
+- `npm run check:marketplace` for the deterministic local-chain integration path
+- `cache/marketplace-integration-summary.json` for the reproducible output snapshot
 
 ## Local NFT policy playground
 

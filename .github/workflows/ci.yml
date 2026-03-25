@@ -69,3 +69,6 @@ jobs:
 
       - name: Assert applied policy state
         run: npm run check:policy
+
+      - name: Run marketplace integration rebuild
+        run: npm run check:marketplace

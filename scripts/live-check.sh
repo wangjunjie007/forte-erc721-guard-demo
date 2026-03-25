@@ -4,6 +4,10 @@ set -euo pipefail
 if [[ -f "$HOME/.zshenv" ]]; then
   source "$HOME/.zshenv"
 fi
+
+export NO_PROXY="${NO_PROXY:+$NO_PROXY,}127.0.0.1,localhost"
+export no_proxy="${no_proxy:+$no_proxy,}127.0.0.1,localhost"
+
 source ./.env
 
 RPC="$RPC_URL"

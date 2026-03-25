@@ -13,10 +13,13 @@ async function main() {
     "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80") as `0x${string}`;
   const diamondAddress = (process.env.RULES_ENGINE_ADDRESS ??
     "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318") as `0x${string}`;
-  const nftAddress = process.env.NFT_ADDRESS as `0x${string}` | undefined;
+  const targetContractAddress = (process.env.TARGET_CONTRACT_ADDRESS ??
+    process.env.MARKETPLACE_NFT_ADDRESS ??
+    process.env.NFT_ADDRESS) as `0x${string}` | undefined;
+  const policyPath = path.resolve(process.env.POLICY_PATH ?? "policy/nft-transfer-guard.policy.json");
 
-  if (!nftAddress) {
-    throw new Error("NFT_ADDRESS is required");
+  if (!targetContractAddress) {
+    throw new Error("TARGET_CONTRACT_ADDRESS (or MARKETPLACE_NFT_ADDRESS / NFT_ADDRESS) is required");
   }
 
   const account = privateKeyToAccount(privateKey);
@@ -44,7 +47,6 @@ async function main() {
     throw new Error(`RulesEngine.create failed for ${diamondAddress}`);
   }
 
-  const policyPath = path.resolve("policy/nft-transfer-guard.policy.json");
   const policySyntax = fs.readFileSync(policyPath, "utf8");
 
   const createResult = await engine.createPolicy(policySyntax);
@@ -56,11 +58,25 @@ async function main() {
 
   const skipApply = process.env.SKIP_APPLY === "1";
   if (!skipApply) {
-    await setPolicies(config, engine.getRulesEnginePolicyContract(), [policyId] as [number], nftAddress, 1);
+    await setPolicies(
+      config,
+      engine.getRulesEnginePolicyContract(),
+      [policyId] as [number],
+      targetContractAddress,
+      1,
+    );
   }
 
-  const appliedPolicyIds = await engine.getAppliedPolicyIds(nftAddress);
-  const output = { rpcUrl, diamondAddress, nftAddress, policyId, appliedPolicyIds, createResult };
+  const appliedPolicyIds = await engine.getAppliedPolicyIds(targetContractAddress);
+  const output = {
+    rpcUrl,
+    diamondAddress,
+    targetContractAddress,
+    policyPath,
+    policyId,
+    appliedPolicyIds,
+    createResult,
+  };
   const stringify = (obj: unknown) =>
     JSON.stringify(obj, (_key, value) => (typeof value === "bigint" ? value.toString() : value), 2);
 

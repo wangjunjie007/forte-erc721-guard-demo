@@ -19,6 +19,7 @@
     "rebuild:local": "bash scripts/rebuild-local-stack.sh",
     "check:live": "bash scripts/live-check.sh",
     "check:integration": "bash scripts/integration-check.sh",
+    "check:marketplace": "bash scripts/marketplace-integration-check.sh",
     "check:policy": "bash scripts/assert-policy-state.sh",
     "check:examples": "tsx scripts/validate-policy-examples.ts",
     "policy:templates": "tsx scripts/apply-policy-template.ts --list",
