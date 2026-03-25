@@ -86,6 +86,7 @@ forte-erc721-guard-demo/
 │  ├─ live-check-marketplace.sh
 │  ├─ live-check.sh
 │  ├─ marketplace-integration-check.sh
+│  ├─ export-reviewer-pack.sh
 │  ├─ policy-helper.ts
 │  ├─ testnet-marketplace-deploy.sh
 │  ├─ testnet-marketplace-verify.sh
@@ -228,6 +229,22 @@ To re-run non-destructive verification only:
 ```bash
 npm run verify:testnet-marketplace
 ```
+
+To replay the verification path locally against the fresh marketplace anvil stack:
+
+```bash
+npm run check:testnet-workflow-local
+```
+
+To export a reviewer/demo pack from the latest local or testnet artifact set:
+
+```bash
+npm run artifacts:reviewer-pack
+```
+
+This writes:
+- `reports/reviewer-pack.json`
+- `reports/reviewer-pack.md`
 
 ### Run only the live NFT transfer scenario checks
 

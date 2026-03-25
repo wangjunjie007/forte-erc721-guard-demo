@@ -169,6 +169,16 @@ Artifacts written locally:
 - `cache/testnet-marketplace.env`
 - `cache/testnet-marketplace-verify-summary.json`
 
+To turn the latest artifact set into a reviewer-friendly bundle:
+
+```bash
+npm run artifacts:reviewer-pack
+```
+
+This writes:
+- `reports/reviewer-pack.json`
+- `reports/reviewer-pack.md`
+
 This turns the repo from a local-only showcase into a reviewer-shareable developer asset.
 
 ---

@@ -1,0 +1,46 @@
+{
+  "sourceKind": "local",
+  "sourceSummaryPath": "/Users/wangjunjie/.openclaw/workspace/forte-erc721-guard-demo/cache/marketplace-integration-summary.json",
+  "verifySummaryPath": "/Users/wangjunjie/.openclaw/workspace/forte-erc721-guard-demo/cache/testnet-marketplace-verify-summary.json",
+  "network": {
+    "name": "anvil",
+    "chainId": 31337,
+    "rpc": "http://127.0.0.1:8545"
+  },
+  "rulesEngine": {
+    "diamondAddress": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318"
+  },
+  "contracts": {
+    "blacklistOracle": "0xb7f8bc63bbcad18155201308c8f3540b07f84f5e",
+    "operatorRegistry": "0xa51c1fc2f0d1a1b8494ed1fe312d7c3a78ed91c0",
+    "marketplaceNft": "0x0dcd1bf9a1b36ce34237eeafef220932846bcd82"
+  },
+  "actors": {
+    "treasury": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "alice": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "bob": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    "operator": "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
+  },
+  "policy": {
+    "appliedPolicyId": 1,
+    "policyType": "open",
+    "policyPath": "/Users/wangjunjie/.openclaw/workspace/forte-erc721-guard-demo/examples/policies/marketplace-operator-gate-nft.policy.json",
+    "applyResult": null,
+    "verify": {
+      "policyId": 1,
+      "policyPath": "/Users/wangjunjie/.openclaw/workspace/forte-erc721-guard-demo/examples/policies/marketplace-operator-gate-nft.policy.json",
+      "appliedPoliciesRaw": "[1]",
+      "closed": "false",
+      "disabled": "false",
+      "metadataRaw": "(\"Marketplace Operator Gate NFT Policy\", \"Restrict ERC721 transfers to direct owners or operators explicitly allowed in an operator registry, while preserving blacklist checks and an emergency pause control.\")"
+    }
+  },
+  "validation": {
+    "operatorAllowlist": "pass",
+    "blacklistRule": "pass",
+    "pauseRule": "pass",
+    "treasuryBypass": "pass",
+    "safeTransferOperatorFlow": "pass"
+  },
+  "txHashes": null
+}

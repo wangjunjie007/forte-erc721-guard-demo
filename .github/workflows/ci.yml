@@ -72,3 +72,9 @@ jobs:
 
       - name: Run marketplace integration rebuild
         run: npm run check:marketplace
+
+      - name: Re-run local testnet verification against marketplace stack
+        run: npm run check:testnet-workflow-local
+
+      - name: Export reviewer pack
+        run: npm run artifacts:reviewer-pack
